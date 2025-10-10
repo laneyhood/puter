@@ -37,10 +37,6 @@ export default {
         h += `<div style="overflow: hidden; display: flex; margin-bottom: 20px; flex-direction: column; align-items: center;">`;
             h += `<div class="profile-picture change-profile-picture" style="background-image: url('${html_encode(window.user?.profile?.picture ?? window.icons['profile.svg'])}');">`;
             h += `</div>`;
-            // remove profile picture button - only show if user has a custom profile picture
-            if(window.user?.profile?.picture) {
-                h += `<button class="button button-danger remove-profile-picture" style="margin-top: 10px;">${i18n('remove_profile_picture')}</button>`;
-            }
         h += `</div>`;
 
         // change password button
@@ -178,32 +174,8 @@ export default {
                     $('.profile-image').addClass('profile-image-has-picture');
                     // update profile picture
                     update_profile(window.user.username, {picture: base64data})
-                    
-                    // Show the remove button after successful upload
-                    if (!$el_window.find('.remove-profile-picture').length) {
-                        $el_window.find('.profile-picture').parent().append(`<button class="button button-danger remove-profile-picture" style="margin-top: 10px;">${i18n('remove_profile_picture')}</button>`);
-                    } else {
-                        // If button exists but is hidden, show it again
-                        $el_window.find('.remove-profile-picture').show();
-                    }
                 }
             }
-        })
-
-        $el_window.on('click', '.remove-profile-picture', function(e) {
-            // Clear the profile picture data
-            update_profile(window.user.username, {picture: null});
-            
-            // Update the UI to show default avatar
-            $el_window.find('.profile-picture').css('background-image', 'url(' + window.icons['profile.svg'] + ')');
-            $('.profile-image').css('background-image', 'url(' + window.icons['profile.svg'] + ')');
-            $('.profile-image').removeClass('profile-image-has-picture');
-            
-            // Hide the remove button
-            $el_window.find('.remove-profile-picture').hide();
-            
-            // Update window.user.profile.picture to null
-            window.user.profile.picture = null;
         })
     },
 };
