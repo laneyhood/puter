@@ -122,6 +122,10 @@ export class ThemeService extends Service {
         this.root.style.setProperty('--primary-alpha', s.alpha);
         this.root.style.setProperty('--primary-color', s.light_text ? 'white' : '#373e44');
 
+        // Sidebar header uses the same primary color for perfect sync with other UI elements
+        const primary = s.light_text ? '#ffffff' : '#373e44';
+        this.root.style.setProperty('--window-sidebar-color', primary);
+
         // TODO: Should we debounce this to reduce traffic?
         this.#broadcastService.sendBroadcast('themeChanged', {
             palette: {
