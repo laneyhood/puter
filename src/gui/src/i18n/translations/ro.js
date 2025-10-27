@@ -290,6 +290,7 @@ const ro = {
         taskmgr_header_type: "Tip",
         terms: "Termeni",
         text_document: 'Document Text',
+        toolbar_auto_hide: 'Ascundere automată a barei de instrumente',
         tos_fineprint: `Făcând clic pe „Creați un cont gratuit”, sunteți de acord cu {{link=terms}}Termenii si conditiile{{/link}} si {{link=privacy}}Politia de Confidentialitate Puter.com{{/link}}.`,
         transparency: "Transparență",
         trash: 'Coș de gunoi',

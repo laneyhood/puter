@@ -1218,6 +1218,117 @@ window.initgui = async function(options){
     });
 
     //--------------------------------------------------------
+    // Toolbar Auto-Hide Logic
+    //--------------------------------------------------------
+    let toolbarAutoHideTimeout = null;
+    let isToolbarHidden = false;
+    const TOOLBAR_HIDE_DELAY = 2000; // 2 seconds
+    const TOOLBAR_PROXIMITY_THRESHOLD = 50; // 50px from top edge
+
+    // Function to show toolbar
+    function showToolbar() {
+        if (isToolbarHidden) {
+            $('.toolbar').removeClass('auto-hidden').addClass('auto-show');
+            isToolbarHidden = false;
+            
+            // Adjust window container position when toolbar shows
+            $('.window-container').css('top', window.toolbar_height);
+        }
+    }
+
+    // Function to hide toolbar
+    function hideToolbar() {
+        if (!isToolbarHidden) {
+            $('.toolbar').removeClass('auto-show').addClass('auto-hidden');
+            isToolbarHidden = true;
+            
+            // Adjust window container position when toolbar hides
+            $('.window-container').css('top', '0px');
+        }
+    }
+
+    // Enhanced mouse move handler for toolbar auto-hide
+    $(document).mousemove(function(event) {
+        // Only proceed if auto-hide is enabled
+        if (!window.toolbar_auto_hide_enabled) {
+            // If auto-hide is disabled, ensure toolbar is visible
+            if (window.isToolbarHidden || $('.toolbar').hasClass('auto-hidden')) {
+                $('.toolbar').removeClass('auto-hidden').addClass('auto-show');
+                window.isToolbarHidden = false;
+                $('.window-container').css('top', window.toolbar_height);
+            }
+            return;
+        }
+
+        const mouseY = event.clientY;
+        
+        // Track mouse position globally
+        window.lastMouseY = mouseY;
+        
+        // Clear existing timeout
+        if (toolbarAutoHideTimeout) {
+            clearTimeout(toolbarAutoHideTimeout);
+            toolbarAutoHideTimeout = null;
+        }
+
+        // Check if mouse is near top edge (within 50px)
+        if (mouseY <= TOOLBAR_PROXIMITY_THRESHOLD) {
+            showToolbar();
+        } else {
+            // Set timeout to hide toolbar after 2 seconds of inactivity
+            toolbarAutoHideTimeout = setTimeout(() => {
+                hideToolbar();
+            }, TOOLBAR_HIDE_DELAY);
+        }
+    });
+
+    // Show toolbar on mouse enter near top edge
+    $(document).on('mouseenter', function(event) {
+        if (window.toolbar_auto_hide_enabled && event.clientY <= TOOLBAR_PROXIMITY_THRESHOLD) {
+            showToolbar();
+        }
+    });
+
+    // Global function to force show toolbar
+    window.forceShowToolbar = function() {
+        if (window.toolbarAutoHideTimeout) {
+            clearTimeout(window.toolbarAutoHideTimeout);
+            window.toolbarAutoHideTimeout = null;
+        }
+        window.isToolbarHidden = false;
+        $('.toolbar').removeClass('auto-hidden').addClass('auto-show');
+        $('.window-container').css('top', window.toolbar_height);
+    };
+
+    // Global function to check mouse position and show toolbar if near top
+    window.checkMouseAndShowToolbar = function() {
+        if (window.toolbar_auto_hide_enabled && window.lastMouseY <= 50) {
+            $('.toolbar').removeClass('auto-hidden').addClass('auto-show');
+            window.isToolbarHidden = false;
+            $('.window-container').css('top', window.toolbar_height);
+        }
+    };
+
+    // Initialize toolbar auto-hide setting
+    window.toolbar_auto_hide_enabled = false; // Default to disabled
+    
+    // Check localStorage first, then puter.kv
+    if (window.user_preferences && window.user_preferences.toolbar_auto_hide !== undefined) {
+        window.toolbar_auto_hide_enabled = window.user_preferences.toolbar_auto_hide;
+    }
+    
+    puter.kv.get('toolbar_auto_hide').then(async (val) => {
+        if (val !== null && val !== undefined) {
+            window.toolbar_auto_hide_enabled = val === true || val === 'true';
+        }
+        
+        // If auto-hide is disabled, ensure toolbar is visible
+        if (!window.toolbar_auto_hide_enabled) {
+            window.forceShowToolbar();
+        }
+    });
+
+    //--------------------------------------------------------
     // Window Activation
     //--------------------------------------------------------
     $(document).on('mousedown', function(e){

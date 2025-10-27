@@ -48,6 +48,15 @@ export default {
                     <option value="show">${i18n('clock_visible_show')}</option>
                 </select>
             </div>
+            <div class="settings-card">
+                <strong style="flex-grow:1;">${i18n('toolbar_auto_hide')}</strong>
+                <div style="flex-grow:1;">
+                    <label class="toggle-switch" for="toolbar_auto_hide_enabled" style="float:right;">
+                        <input type="checkbox" class="toolbar-auto-hide" id="toolbar_auto_hide_enabled">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
             <div class="settings-card" style="display: block; height: auto;">
                 <strong style="margin: 15px 0 30px; display: block;">${i18n('menubar_style')}</strong>
                 <div style="flex-grow:1; margin-top: 10px;">
@@ -101,6 +110,60 @@ export default {
         });
 
         window.change_clock_visible();
+
+        // Toolbar auto-hide setting
+        $el_window.on('change', '.toolbar-auto-hide', function(e){
+            const enabled = $(this).is(':checked');
+            // Save setting to user preferences
+            window.user_preferences.toolbar_auto_hide = enabled;
+            localStorage.setItem('user_preferences', JSON.stringify(window.user_preferences));
+            
+            // Also save to puter.kv for consistency
+            puter.kv.set('toolbar_auto_hide', enabled);
+            
+            // Apply setting immediately
+            if (enabled) {
+                // Enable auto-hide functionality
+                window.toolbar_auto_hide_enabled = true;
+                
+                // Check if mouse is near top edge and, if so, show toolbar immediately
+                window.checkMouseAndShowToolbar();
+                
+                // Start auto-hide timer immediately when enabled
+                if (window.toolbarAutoHideTimeout) {
+                    clearTimeout(window.toolbarAutoHideTimeout);
+                }
+                window.toolbarAutoHideTimeout = setTimeout(() => {
+                    if (window.toolbar_auto_hide_enabled) {
+                        $('.toolbar').removeClass('auto-show').addClass('auto-hidden');
+                        window.isToolbarHidden = true;
+                        $('.window-container').css('top', '0px');
+                    }
+                }, 2000); // 2 seconds
+            } else {
+                // Disable auto-hide functionality
+                window.toolbar_auto_hide_enabled = false;
+                
+                // Use global function to force show toolbar
+                window.forceShowToolbar();
+                
+                // Force show toolbar multiple times to ensure it sticks
+                setTimeout(() => {
+                    window.forceShowToolbar();
+                }, 50);
+                
+                setTimeout(() => {
+                    window.forceShowToolbar();
+                }, 200);
+            }
+        });
+
+        // Load toolbar auto-hide setting
+        puter.kv.get('toolbar_auto_hide').then(async (val) => {
+            const enabled = val === true || val === 'true';
+            $el_window.find('.toolbar-auto-hide').prop('checked', enabled);
+            window.toolbar_auto_hide_enabled = enabled;
+        });
 
         puter.kv.get('menubar_style').then(async (val) => {
             if(val === 'system' || !val){

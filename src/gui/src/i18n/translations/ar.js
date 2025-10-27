@@ -308,6 +308,7 @@ const ar = {
       taskmgr_header_type: "النوع",
       terms: "الشروط",
       text_document: "مستند نصي",
+      toolbar_auto_hide: "إخفاء شريط الأدوات تلقائياً",
       tos_fineprint:
           "بالنقر على 'إنشاء حساب مجاني' فإنك توافق على {{link=terms}}شروط الخدمة{{/link}} و{{link=privacy}}سياسة الخصوصية{{/link}} لـPuter.",
       transparency: "الشفافية",

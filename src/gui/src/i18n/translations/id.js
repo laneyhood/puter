@@ -308,6 +308,7 @@ const id = {
     taskmgr_header_type: "Tipe",
     terms: "Syarat",
     text_document: "Dokumen Teks",
+    toolbar_auto_hide: "Sembunyikan toolbar otomatis",
     tos_fineprint: `Dengan mengklik 'Buat Akun Gratis', Anda menyetujui {{link=terms}}Syarat Layanan{{/link}} dan {{link=privacy}}Kebijakan Privasi{{/link}} Puter.`,
     transparency: "Transparansi",
     trash: "Tempat Sampah",

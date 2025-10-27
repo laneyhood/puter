@@ -295,6 +295,7 @@ const ur = {
     taskmgr_header_type: "قسم",
     terms: "شرائط",
     text_document: "متن دستاویز",
+    toolbar_auto_hide: "ٹول بار آٹو ہائیڈ",
     tos_fineprint: `براہ کرم "مفت اکاؤنٹ بنائیں" پر کلک کرکے `,
     transparency: "شفافیت",
     trash: "کچرا",
