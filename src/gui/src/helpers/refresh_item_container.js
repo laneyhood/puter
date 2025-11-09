@@ -234,6 +234,11 @@ const refresh_item_container = function(el_item_container, options){
             // update footer item count if this is an explorer window
             if(el_window)
                 window.update_explorer_footer_item_count(el_window);
+
+            // Apply desktop icon visibility preference if this is the desktop
+            if($(el_item_container).hasClass('desktop') && window.show_or_hide_desktop_icons){
+                window.show_or_hide_desktop_icons();
+            }
         },
         // This makes sure the loading spinner shows up if the request takes longer than 1 second 
         // and stay there for at least 1 second since the flickering is annoying
