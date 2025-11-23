@@ -265,6 +265,7 @@ const fr = {
         send_password_recovery_email: "Envoyer un e-mail de récupération de mot de passe",
         session_saved: "Merci d'avoir créé un compte. Cette session a été sauvegardée.",
         settings: "Paramètres",
+        set_as_desktop_background: "Définir comme fond d'écran",
         set_new_password: "Definir un nouveau mot de passe",
         share: "Partager",
         share_to: "Partager à",

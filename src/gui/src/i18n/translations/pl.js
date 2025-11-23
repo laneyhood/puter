@@ -265,6 +265,7 @@ const pl = {
         send_password_recovery_email: "Wyślij email do odzyskania hasła",
         session_saved: "Dziękujemy za stworzenie konta. Ta sesja została zapisana. ",
         settings: "Ustawienia",
+        set_as_desktop_background: "Ustaw jako tapetę pulpitu",
         set_new_password: "Ustaw nowe hasło.",
         share: "Udostępnij",
         share_to: "Udostępnij do",

@@ -963,6 +963,12 @@ function UIItem(options){
         // -------------------------------------------------------   
         else{
             const is_trash = $(el_item).attr('data-path') === window.trash_path || $(el_item).attr('data-shortcut_to_path') === window.trash_path;
+            
+            // Detect if item is an image file
+            const is_image = !options.is_dir && 
+                (options.type?.startsWith('image/') || 
+                 /\.(jpg|jpeg|png|gif|webp|svg|bmp)$/i.test(options.name));
+            
             menu_items = [];
             // -------------------------------------------
             // Open
@@ -1182,6 +1188,64 @@ function UIItem(options){
                             window.trigger_download([options.path]);
                     }
                 });                
+            }
+            // -------------------------------------------
+            // Set as Desktop Background
+            // -------------------------------------------
+            if(!is_trash && !is_trashed && is_image){
+                menu_items.push({
+                    html: i18n('set_as_desktop_background'),
+                    onClick: async function(){
+                        try {
+                            // Get file uid
+                            const file_uid = $(el_item).attr('data-uid');
+                            const file_path = $(el_item).attr('data-path');
+                            
+                            // Sign the file to get read_url
+                            // Use null for app_uid since we're in the GUI context
+                            const file_signature = await puter.fs.sign(null, {
+                                uid: file_uid,
+                                action: 'read'
+                            });
+                            
+                            // Extract read_url from signature
+                            const read_url = file_signature.read_url || (file_signature.items && file_signature.items.read_url);
+                            
+                            if (!read_url) {
+                                console.error('Failed to get read_url for file');
+                                return;
+                            }
+                            
+                            // Set background visually
+                            window.set_desktop_background({
+                                url: read_url,
+                                fit: window.desktop_bg_fit || 'cover'
+                            });
+                            
+                            // Save to database
+                            await $.ajax({
+                                url: window.api_origin + "/set-desktop-bg",
+                                type: 'POST',
+                                data: JSON.stringify({ 
+                                    url: read_url,
+                                    fit: window.desktop_bg_fit || 'cover',
+                                    color: null,
+                                }),
+                                contentType: "application/json",
+                                headers: {
+                                    "Authorization": "Bearer "+window.auth_token
+                                },
+                                statusCode: {
+                                    401: function () {
+                                        window.logout();
+                                    },
+                                },
+                            });
+                        } catch(err) {
+                            console.error('Failed to set desktop background:', err);
+                        }
+                    }
+                });
             }
             // -------------------------------------------
             // Zip

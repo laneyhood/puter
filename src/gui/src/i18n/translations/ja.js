@@ -266,6 +266,7 @@ const ja = {
         send_password_recovery_email: "パスワード回復メールを送信",
         session_saved: "アカウントを作成していただきありがとうございます。このセッションは保存されました。",
         settings: "設定",
+        set_as_desktop_background: "デスクトップの背景として設定",
         set_new_password: "新しいパスワードを設定",
         share: "共有",
         share_to: "共有先",

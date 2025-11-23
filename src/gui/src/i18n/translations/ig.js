@@ -288,6 +288,7 @@ const ig = {
     send_password_recovery_email: "Zipu ozi-e mgbake paswọọdụ ",
     session_saved: "Daalụ maka ịmepụta akaụntụ. Achekwala nnọkọ a.",
     settings: "Ntọala",
+    set_as_desktop_background: "Tinye dị ka okirikiri desktọọpụ",
     set_new_password: "Tinye paswọọdụ ọhụrụ",
     share: "ike",
     share_to: "ike nye",

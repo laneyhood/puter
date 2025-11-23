@@ -265,6 +265,7 @@ const tr = {
         send_password_recovery_email: "Parola Kurtarma E-postası Gönder",
         session_saved: "Hesap oluşturduğunuz için teşekkür ederiz. Oturumunuz kaydedildi.",
         settings: "Ayarlar",
+        set_as_desktop_background: "Masaüstü arka planı olarak ayarla",
         set_new_password: "Yeni Parola Belirle",
         share: "Paylaş",
         share_to: "Şuna paylaş",

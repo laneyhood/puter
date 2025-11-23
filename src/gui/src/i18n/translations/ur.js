@@ -274,6 +274,7 @@ const ur = {
     send_password_recovery_email: "پاس ورڈ بحالی ای میل بھیجیں",
     session_saved: "سیشن محفوظ ہوگیا ہے ",
     settings: "ترتیبات",
+    set_as_desktop_background: "ڈیسک ٹاپ پس منظر کے طور پر مقرر کریں",
     set_new_password: "نیا پاس ورڈ مقرر کریں ",
     share_to: " کے ساتھ شیئر کریں",
     show_all_windows: "تمام ونڈوز دکھائیں ",

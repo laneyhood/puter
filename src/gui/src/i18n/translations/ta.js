@@ -264,6 +264,7 @@ const ta = {
         send_password_recovery_email: "கடவுச்சொல் மீட்பு மின்னஞ்சலை அனுப்பவும்",
         session_saved: "கணக்கை உருவாக்கியதற்கு நன்றி. இந்த அமர்வு சேமிக்கப்பட்டது.",
         settings: "அமைப்புகள்",
+        set_as_desktop_background: "கணினித் திரையின் பின்னணியாக அமை",
         set_new_password: "புதிய கடவுச்சொல்லை அமை",
         share: "பகிர்",
         share_to: "பகிரவும்",

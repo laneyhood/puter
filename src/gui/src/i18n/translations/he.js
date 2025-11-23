@@ -282,6 +282,7 @@ const en = {
     send_password_recovery_email: "שלח אימייל שחזור סיסמה",
     session_saved: "תודה שיצרת חשבון. הפעלה זו נשמרה",
     settings: "הגדרות",
+    set_as_desktop_background: "הגדר כרקע שולחן עבודה",
     set_new_password: "הגדרת סיסמה חדשה",
     share: "שיתוף",
     share_to: "שתף אל",

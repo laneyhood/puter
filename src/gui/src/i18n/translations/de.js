@@ -265,6 +265,7 @@ const de = {
         send_password_recovery_email: "Sende eine E-Mail, um Ihr Passwort wiederherzustellen",
         session_saved: "Vielen Dank, dass Sie ein Konto erstellt haben. Diese Sitzung wurde gespeichert.",
         settings: "Einstellungen",
+        set_as_desktop_background: "Als Desktop-Hintergrund festlegen",
         set_new_password: "Neues Passwort festlegen",
         share: "Teilen",
         share_to: "Teilen mit",

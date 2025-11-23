@@ -283,6 +283,7 @@ const id = {
     send_password_recovery_email: "Kirim Email Pemulihan Kata Sandi",
     session_saved: "Terima kasih telah membuat akun. Sesi ini telah disimpan.",
     settings: "Pengaturan",
+    set_as_desktop_background: "Tetapkan sebagai latar belakang desktop",
     set_new_password: "Tetapkan Kata Sandi Baru",
     share: "Bagikan",
     share_to: "Bagikan ke",

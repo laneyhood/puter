@@ -265,6 +265,7 @@ const da = {
 		send_password_recovery_email: 'Send e-mail til gendannelse af adgangskode',
 		session_saved: 'Tak fordi du oprettede en konto. Denne session er blevet gemt.',
 		settings: 'Indstillinger',
+		set_as_desktop_background: 'Indstil som skrivebordsbaggrund',
 		set_new_password: 'Indstil ny adgangskode',
 		share: 'Del',
 		share_to: 'Del til',

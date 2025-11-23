@@ -340,6 +340,7 @@ const fi = {
     send_password_recovery_email: "Lähetä salasanan palautussähköposti",
     session_saved: "Kiitos tilin luomisesta. Tämä istunto on tallennettu.",
     settings: "Asetukset",
+    set_as_desktop_background: "Aseta työpöydän taustakuvaksi",
     set_new_password: "Aseta uusi salasana",
     share: "Jaa",
 

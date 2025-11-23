@@ -292,6 +292,7 @@ const ku = {
     send_password_recovery_email: "پەیامی ڕێکخستنەوەی وشەی تێپەڕ ناردن",
     session_saved: "سوپاس بۆ دروستکردنی هەژمار. ئەم دانیشتنە پاشەکەوتکرا.",
     settings: "ڕێکخستنەکان",
+    set_as_desktop_background: "دانان وەک پاشبنەری دێسکتۆپ",
     set_new_password: "وشەی تێپەڕی نوێ دانان",
     share: "هاوبەشکردن",
     share_to: "هاوبەشکردن بۆ",

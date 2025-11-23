@@ -269,6 +269,7 @@ const pt = {
         send_password_recovery_email: "Enviar Email de Recuperação de Password",
         session_saved: "Obrigado por criares uma conta. Esta sessão foi gravada.",
         settings: "Definições",
+        set_as_desktop_background: "Definir como fundo de ecrã",
         set_new_password: "Definir nova Password",
         share: "Partilhar",
         share_to: "Partilhar com",
