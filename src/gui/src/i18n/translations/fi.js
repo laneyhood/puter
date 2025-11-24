@@ -189,6 +189,7 @@ const fi = {
     // 'get a link to the copy' => 'Ota Linkki Kopioon' - More probable, just want to be sure
 
     hide_all_windows: "Piilota kaikki ikkunat",
+    hide_desktop_icons: "Piilota työpöydän kuvakkeet",
     home: "Koti",
     html_document: "HTML-dokumentti",
     hue: "Sävy",
@@ -339,6 +340,7 @@ const fi = {
     send_password_recovery_email: "Lähetä salasanan palautussähköposti",
     session_saved: "Kiitos tilin luomisesta. Tämä istunto on tallennettu.",
     settings: "Asetukset",
+    set_as_desktop_background: "Aseta työpöydän taustakuvaksi",
     set_new_password: "Aseta uusi salasana",
     share: "Jaa",
 
@@ -349,6 +351,7 @@ const fi = {
     share_with: "Jaa:",
     shortcut_to: "Pikakuvake",
     show_all_windows: "Näytä kaikki ikkunat",
+    show_desktop_icons: "Näytä työpöydän kuvakkeet",
     show_hidden: "Näytä piilotetut",
     sign_in_with_puter: "Kirjaudu sisään Puterilla",
     sign_up: "Rekisteröidy",
