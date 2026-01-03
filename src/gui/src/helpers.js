@@ -548,6 +548,11 @@ window.update_user_preferences = function(user_preferences) {
     broadcastService.sendBroadcast('localeChanged', {
         language: language,
     }, { sendToNewAppInstances: true });
+
+    // Apply desktop icon visibility if preference changed
+    if(window.show_or_hide_desktop_icons){
+        window.show_or_hide_desktop_icons();
+    }
 }
 
 window.sendWindowWillCloseMsg = function(iframe_element) {
@@ -778,6 +783,22 @@ window.show_or_hide_files = (item_containers) => {
         .find('.item')
         .filter((_, item) => item.dataset.name.startsWith('.'))
         .removeClass(class_to_remove).addClass(class_to_add);
+}
+
+window.show_or_hide_desktop_icons = () => {
+    const desktop_icons_visible = window.user_preferences.desktop_icons_visible;
+    const desktop = document.querySelector('.desktop.item-container');
+    if (!desktop) return;
+    
+    if (desktop_icons_visible) {
+        // Show icons - first remove item-hidden from all items
+        $(desktop).find('.item').removeClass('item-hidden');
+        // Then re-apply hidden file visibility (which may re-hide some items)
+        window.show_or_hide_files([desktop]);
+    } else {
+        // Hide icons - add item-hidden class to all items
+        $(desktop).find('.item').addClass('item-hidden');
+    }
 }
 
 window.create_folder = async(basedir, appendto_element)=>{

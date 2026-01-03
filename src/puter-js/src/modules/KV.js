@@ -10,6 +10,7 @@ const gui_cache_keys = [
     'user_preferences.show_hidden_files',
     'user_preferences.language',
     'user_preferences.clock_visible',
+    'user_preferences.desktop_icons_visible',
     'has_seen_welcome_window',
 ];
 

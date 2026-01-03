@@ -487,6 +487,11 @@ async function UIDesktop(options){
         $(`.item-container[data-path='${html_encode(dest_path)}' i]`).each(function(){
             window.sort_items(this, $(this).attr('data-sort_by'), $(this).attr('data-sort_order'))
         })
+
+        // Apply desktop icon visibility if item was moved to desktop
+        if(dest_path === window.desktop_path && window.show_or_hide_desktop_icons){
+            window.show_or_hide_desktop_icons();
+        }
     });
     
     window.socket.on('user.email_confirmed', (msg) => {
@@ -632,6 +637,11 @@ async function UIDesktop(options){
             $(`.item-container[data-path='${html_encode(item.dirpath)}' i]`).each(function(){
                 window.sort_items(this, $(this).attr('data-sort_by'), $(this).attr('data-sort_order'))
             })
+
+            // Apply desktop icon visibility if item was added to desktop
+            if(item.dirpath === window.desktop_path && window.show_or_hide_desktop_icons){
+                window.show_or_hide_desktop_icons();
+            }
         }
     });
 
@@ -706,10 +716,12 @@ async function UIDesktop(options){
     }
 
     // update local user preferences
+    const desktop_icons_visible_kv = await puter.kv.get('user_preferences.desktop_icons_visible');
     const user_preferences = {
         show_hidden_files: JSON.parse(await puter.kv.get('user_preferences.show_hidden_files')),
         language: await puter.kv.get('user_preferences.language'),
         clock_visible: await puter.kv.get('user_preferences.clock_visible'),
+        desktop_icons_visible: desktop_icons_visible_kv !== null ? JSON.parse(desktop_icons_visible_kv) : true,
     };
 
     // update default apps
@@ -941,6 +953,20 @@ async function UIDesktop(options){
                                 show_hidden_files : !window.user_preferences.show_hidden_files,
                             });
                             window.show_or_hide_files(document.querySelectorAll('.item-container'));
+                        }
+                    },
+                    // -------------------------------------------
+                    // Show/Hide desktop icons
+                    // -------------------------------------------
+                    {
+                        html: window.user_preferences.desktop_icons_visible 
+                            ? i18n('hide_desktop_icons') 
+                            : i18n('show_desktop_icons'),
+                        onClick: function(){
+                            window.mutate_user_preferences({
+                                desktop_icons_visible: !window.user_preferences.desktop_icons_visible,
+                            });
+                            window.show_or_hide_desktop_icons();
                         }
                     },
                     // -------------------------------------------
